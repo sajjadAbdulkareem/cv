@@ -5,9 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>CV - Sajjad Abdulkareem Mohsin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;700&display=swap"
         rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f1f5f9;
+            --card-bg: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --tag-bg: #f1f5f9;
+            --tag-text: #1e40af;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -20,6 +35,7 @@
             overflow-x: hidden;
         }
 
+        /* Sidebar Styles */
         .sidebar {
             position: fixed;
             left: 0;
@@ -126,6 +142,7 @@
             word-break: break-all;
         }
 
+        /* Skills Styles */
         .skills-sidebar {
             margin-top: 30px;
         }
@@ -175,6 +192,7 @@
             text-align: center;
         }
 
+        /* Main Content Layout */
         .main-content {
             margin-left: 300px;
             padding: 40px 60px;
@@ -273,115 +291,159 @@
             font-size: 1.1em;
         }
 
+        /* NEW PROJECTS GRID STYLES */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
+            grid-template-columns: 1fr;
+            gap: 50px;
+            max-width: 1000px;
         }
 
         .project-card {
-            background: white;
-            border-radius: 20px;
+            background: var(--card-bg);
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            cursor: pointer;
-            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            font-family: 'Inter', sans-serif;
         }
 
         .project-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
         }
 
-        .project-image {
+        .project-header {
+            padding: 30px 30px 20px;
+            text-align: left;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .project-header h3 {
+            margin: 0;
+            font-size: 1.6rem;
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .slider-section {
             width: 100%;
-            height: 220px;
-            overflow: hidden;
+            padding: 0;
+            background: #fff;
             position: relative;
         }
 
-        .project-image img {
+        .main-swiper {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
-            opacity: 0;
-            transition: opacity 0.4s;
+            height: 600px;
+            border-radius: 0;
+            margin-bottom: 0px;
+            position: relative;
+            background-color: #fcfcfc;
             display: flex;
             align-items: center;
             justify-content: center;
-            flex-direction: column;
-            padding: 20px;
-            text-align: center;
         }
 
-        .project-card:hover .project-overlay {
+        .main-swiper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: high-quality;
+            backface-visibility: hidden;
+            -webkit-font-smoothing: antialiased;
+            transform: translateZ(0);
+        }
+
+        /* Custom Arrow Styles */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #fff !important;
+            background: rgba(0, 0, 0, 0.3);
+            width: 35px !important;
+            height: 35px !important;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next:after,
+        .swiper-button-prev:after {
+            font-size: 14px !important;
+            font-weight: bold;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* Thumbnails */
+        .thumbs-swiper {
+            height: 70px;
+            box-sizing: border-box;
+        }
+
+        .thumbs-swiper .swiper-slide {
+            width: 25%;
+            height: 100%;
+            opacity: 0.5;
+            cursor: pointer;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.2s ease;
+            background-color: #f8fafc;
+            /* Match main slider background */
+        }
+
+        .thumbs-swiper .swiper-slide-thumb-active {
             opacity: 1;
+            border-color: var(--primary-color);
         }
 
-        .project-overlay h4 {
-            color: white;
-            font-size: 1.3em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        .project-overlay p {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 0.95em;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .project-overlay-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-        }
-
-        .project-overlay-tags span {
-            background: rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.75em;
-            font-weight: 500;
-            backdrop-filter: blur(10px);
+        .thumbs-swiper img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: high-quality;
         }
 
         .project-content {
-            padding: 25px;
+            padding: 24px;
+            flex-grow: 1;
         }
 
-        .project-content h3 {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #1e1e2f;
-            margin-bottom: 10px;
+        .project-brief {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 24px;
         }
 
-        .project-content .project-brief {
-            color: #666;
-            font-size: 0.95em;
-            line-height: 1.6;
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
+        .tag {
+            background: var(--tag-bg);
+            color: var(--tag-text);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        /* Media Queries */
         @media (max-width: 1024px) {
             .sidebar {
                 width: 250px;
@@ -398,6 +460,10 @@
         }
 
         @media (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
             .sidebar {
                 position: relative;
                 width: 100%;
@@ -407,10 +473,6 @@
             .main-content {
                 margin-left: 0;
                 padding: 20px;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
             }
 
             .section-title {
@@ -437,10 +499,6 @@
                 <span class="contact-icon">✉</span>
                 <span class="contact-text">sajjadkareem61@email.com</span>
             </a>
-            <a href="tel:+9647729765980" class="contact-item">
-                <span class="contact-icon">📞</span>
-                <span class="contact-text">0772 976 5980</span>
-            </a>
 
             <a href="https://github.com/sajjadAbdulkareem" target="_blank" class="contact-item">
                 <span class="contact-icon">🐱</span>
@@ -458,6 +516,7 @@
         </div>
     </div>
 
+    <!-- These closing divs were in the original file, possibly closing wrapping containers if any, keeping for safety -->
     </div>
     </div>
     </div>
@@ -611,156 +670,595 @@
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js">
                     <span>Vue.js</span>
                 </div>
+                <div class="skill-card-main">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                        alt="Docker">
+                    <span>Docker</span>
+                </div>
             </div>
         </div>
 
         <div class="section">
-            <h2 class="section-title"> Some projects
-            </h2>
+            <h2 class="section-title">Projects</h2>
+
             <div class="projects-grid">
+
+                <!-- Project 5: Doctor Booking Portals -->
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/blockcahinIp.png" alt="Blockchain Project">
-                        <div class="project-overlay">
-                            <h4>Blockchain IP Management</h4>
-                            <p>A decentralized platform for managing intellectual property rights using smart contracts
-                                and blockchain technology</p>
-                            <div class="project-overlay-tags">
-                                <span>Solidity</span>
-                                <span>Web3.js</span>
-                                <span>React</span>
-                                <span>Ethereum</span>
-                                <span>python</span>
+                    <div class="project-header">
+                        <h3>Doctor Booking Portals</h3>
+                    </div>
+
+                    <div class="slider-section">
+                        <div class="swiper main-swiper mainSwiper5">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-2022-09-09-21_30_21.png"
+                                        alt="Portal Home"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-find-2022-09-09-21_36_16.png"
+                                        alt="Search Doctors"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-Reservation-index-123-2022-09-09-21_37_17.png"
+                                        alt="Reservation Details"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-AdminBookingDashbord-2022-09-09-21_39_09.png"
+                                        alt="Admin Dashboard"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-ManageClinics-2022-09-09-21_40_10.png"
+                                        alt="Manage Clinics"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-ManageDoctors-2022-09-09-21_39_36.png"
+                                        alt="Manage Doctors"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-DoctorBookingDashbord-2022-09-09-21_43_13.png"
+                                        alt="Doctor Dashboard"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-dayspresence-2022-09-09-21_43_37.png"
+                                        alt="Doctor Schedule"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-allappo-2022-09-09-21_45_36.png"
+                                        alt="All Appointments"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-Reservation-index-123-2022-09-09-21_36_29.png"
+                                        alt="Booking Process"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-Doctorprofile-details-123-2022-09-09-21_44_07.png"
+                                        alt="Doctor Profile Detailed"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-toDayappo-2022-09-09-21_42_16.png"
+                                        alt="Today's Appointments"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-toDayNoappo-2022-09-09-21_41_40.png"
+                                        alt="Empty Dashboard View"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-DoctorBookingDashbord-2022-09-09-21_46_20.png"
+                                        alt="Advanced Doctor Dashboard"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-Reservation-index-123-2022-09-09-21_42_40.png"
+                                        alt="Reservation Statistics"></div>
+                            </div>
+                            <div class="swiper-button-next next5"></div>
+                            <div class="swiper-button-prev prev5"></div>
+                        </div>
+
+                        <div class="swiper thumbs-swiper thumbSwiper5">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-2022-09-09-21_30_21.png"
+                                        alt="T1"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-find-2022-09-09-21_36_16.png"
+                                        alt="T2"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-Reservation-index-123-2022-09-09-21_37_17.png"
+                                        alt="T3"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-AdminBookingDashbord-2022-09-09-21_39_09.png"
+                                        alt="T4"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-ManageClinics-2022-09-09-21_40_10.png"
+                                        alt="T5"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-ManageDoctors-2022-09-09-21_39_36.png"
+                                        alt="T6"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-DoctorBookingDashbord-2022-09-09-21_43_13.png"
+                                        alt="T7"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-dayspresence-2022-09-09-21_43_37.png"
+                                        alt="T8"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-allappo-2022-09-09-21_45_36.png"
+                                        alt="T9"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-Reservation-index-123-2022-09-09-21_36_29.png"
+                                        alt="T10"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-Doctorprofile-details-123-2022-09-09-21_44_07.png"
+                                        alt="T11"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-toDayappo-2022-09-09-21_42_16.png"
+                                        alt="T12"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-toDayNoappo-2022-09-09-21_41_40.png"
+                                        alt="T13"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-DoctorBookingDashbord-2022-09-09-21_46_20.png"
+                                        alt="T14"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/doctorBooking/screencapture-localhost-doctorBooking2-Reservation-index-123-2022-09-09-21_42_40.png"
+                                        alt="T15"></div>
                             </div>
                         </div>
                     </div>
+
                     <div class="project-content">
-                        <h3>Blockchain IP System</h3>
-                        <p class="project-brief"> </p>
+                        <p class="project-brief">An extensive medical portal system for seamless doctor appointment
+                            booking, clinic administration, and comprehensive healthcare management dashboards.</p>
+                        <div class="project-tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">CodeIgniter 3</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">MySQL</span>
+                        </div>
                     </div>
                 </div>
 
-
-
+                <!-- Project 8: Web Projects Portfolio -->
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/trucks.png" alt=" Trucks System">
-                        <div class="project-overlay">
-                            <h4> Trucks entries System</h4>
-                            <p>Logistics system for tracking of truck entries in ports.</p>
-                            <div class="project-overlay-tags">
-                                <span>php</span>
-                                <span>MySQL</span>
-                                <span>javascript</span>
-                                <span>bootstrap</span>
+                    <div class="project-header">
+                        <h3>Full-Stack Web Projects Portfolio</h3>
+                    </div>
+
+                    <div class="slider-section">
+                        <div class="swiper main-swiper mainSwiper8">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/allwebsites/Screenshot 2021-11-18 195700.png"
+                                        alt="Website 1"></div>
+                                <div class="swiper-slide"><img src="images/allwebsites/Screenshot 2021-11-18 195816.png"
+                                        alt="Website 2"></div>
+                                <div class="swiper-slide"><img src="images/allwebsites/Screenshot 2021-11-18 195902.png"
+                                        alt="Website 3"></div>
+                                <div class="swiper-slide"><img src="images/allwebsites/Screenshot 2021-11-18 200345.png"
+                                        alt="Website 4"></div>
+                                <div class="swiper-slide"><img src="images/allwebsites/Screenshot 2021-11-18 200514.png"
+                                        alt="Website 5"></div>
+                            </div>
+                            <div class="swiper-button-next next8"></div>
+                            <div class="swiper-button-prev prev8"></div>
+                        </div>
+
+                        <div class="swiper thumbs-swiper thumbSwiper8">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/allwebsites/Screenshot 2021-11-18 195700.png"
+                                        alt="T1"></div>
+                                <div class="swiper-slide"><img src="images/allwebsites/Screenshot 2021-11-18 195816.png"
+                                        alt="T2"></div>
+                                <div class="swiper-slide"><img src="images/allwebsites/Screenshot 2021-11-18 195902.png"
+                                        alt="T3"></div>
+                                <div class="swiper-slide"><img src="images/allwebsites/Screenshot 2021-11-18 200345.png"
+                                        alt="T4"></div>
+                                <div class="swiper-slide"><img src="images/allwebsites/Screenshot 2021-11-18 200514.png"
+                                        alt="T5"></div>
                             </div>
                         </div>
                     </div>
+
                     <div class="project-content">
-                        <h3>Trucks entries System</h3>
-                        <p class="project-brief"> </p>
+                        <p class="project-brief">A diverse collection of modern web applications showcasing dynamic
+                            UI/UX designs and high-performance backends.</p>
+                        <div class="project-tags">
+                            <span class="tag">Full-Stack</span>
+                            <span class="tag">Responsive</span>
+                            <span class="tag">UI/UX</span>
+                            <span class="tag">Web Design</span>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Project 9: Educational Management System -->
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/speechEmotion.jpg" alt="Security System">
-                        <div class="project-overlay">
-                            <h4>AI speechEmotion Recognition </h4>
-                            <p>Speech and face emotion detection using LSTM, and Toronto emotional speech set (TESS)</p>
-                            <div class="project-overlay-tags">
-                                <span>python</span>
-                                <span>LSTM</span>
-                                <span>Toronto emotional speech set (TESS)</span>
+                    <div class="project-header">
+                        <h3>Educational Content Management</h3>
+                    </div>
 
+                    <div class="slider-section">
+                        <div class="swiper main-swiper mainSwiper9">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/lects/Screenshot 2021-08-27 161217.png"
+                                        alt="System 1"></div>
+                                <div class="swiper-slide"><img src="images/lects/Screenshot 2021-08-27 192424.png"
+                                        alt="System 2"></div>
+                                <div class="swiper-slide"><img src="images/lects/Screenshot 2021-08-27 192514.png"
+                                        alt="System 3"></div>
+                                <div class="swiper-slide"><img src="images/lects/Screenshot 2021-08-27 192536.png"
+                                        alt="System 4"></div>
+                            </div>
+                            <div class="swiper-button-next next9"></div>
+                            <div class="swiper-button-prev prev9"></div>
+                        </div>
+
+                        <div class="swiper thumbs-swiper thumbSwiper9">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/lects/Screenshot 2021-08-27 161217.png"
+                                        alt="T1"></div>
+                                <div class="swiper-slide"><img src="images/lects/Screenshot 2021-08-27 192424.png"
+                                        alt="T2"></div>
+                                <div class="swiper-slide"><img src="images/lects/Screenshot 2021-08-27 192514.png"
+                                        alt="T3"></div>
+                                <div class="swiper-slide"><img src="images/lects/Screenshot 2021-08-27 192536.png"
+                                        alt="T4"></div>
                             </div>
                         </div>
                     </div>
+
                     <div class="project-content">
-                        <h3>AI speech Emotion Recognition</h3>
+                        <p class="project-brief">A digital learning ecosystem for streamlined distribution of
+                            educational lectures and student resource management.</p>
+                        <div class="project-tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Education</span>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Project 4: Classroom Reservation -->
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/Classroom Reservation.jpg" alt=" ">
-                        <div class="project-overlay">
-                            <h4>Classroom Reservation</h4>
-                            <div class="project-overlay-tags">
-                                <span>php</span>
-                                <span>phpmyadmin</span>
-                                <span>javascript</span>
-                                <span>bootstrap</span>
+                    <div class="project-header">
+                        <h3>Smart Classroom Reservation</h3>
+                    </div>
+
+                    <div class="slider-section">
+                        <div class="swiper main-swiper mainSwiper4">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/classrooms/Screenshot 2026-02-01 190233.png"
+                                        alt="Reservation 1"></div>
+                                <div class="swiper-slide"><img src="images/classrooms/Screenshot 2021-08-27 161136.png"
+                                        alt="Reservation 2"></div>
+                                <div class="swiper-slide"><img src="images/classrooms/Screenshot 2021-08-27 192018.png"
+                                        alt="Reservation 3"></div>
+                                <div class="swiper-slide"><img src="images/classrooms/Screenshot 2021-08-27 192045.png"
+                                        alt="Reservation 4"></div>
+                                <div class="swiper-slide"><img src="images/classrooms/vces.png" alt="Reservation 5">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next next4"></div>
+                            <div class="swiper-button-prev prev4"></div>
+                        </div>
+
+                        <div class="swiper thumbs-swiper thumbSwiper4">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/classrooms/Screenshot 2026-02-01 190233.png"
+                                        alt="T1"></div>
+                                <div class="swiper-slide"><img src="images/classrooms/Screenshot 2021-08-27 161136.png"
+                                        alt="T2"></div>
+                                <div class="swiper-slide"><img src="images/classrooms/Screenshot 2021-08-27 192018.png"
+                                        alt="T3"></div>
+                                <div class="swiper-slide"><img src="images/classrooms/Screenshot 2021-08-27 192045.png"
+                                        alt="T4"></div>
+                                <div class="swiper-slide"><img src="images/classrooms/vces.png" alt="T5"></div>
                             </div>
                         </div>
                     </div>
-                    <div class="project-content">
-                        <h3>Classroom Reservation</h3>
 
+                    <div class="project-content">
+                        <p class="project-brief">Automated venue allocation system for educational institutions with
+                            real-time availability tracking.</p>
+                        <div class="project-tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">MySQL</span>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Project 6: Web Forms -->
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/screencapture-localhost-doctorBooking2-Reservation.png" alt="Telegram Bot">
-                        <div class="project-overlay">
-                            <h4>Doctor Booking portals</h4>
+                    <div class="project-header">
+                        <h3>Dynamic Web Forms System</h3>
+                    </div>
 
-                            <div class="project-overlay-tags">
-                                <span>php</span>
-                                <span>codeigniter3</span>
-                                <span>bootstrap</span>
-                                <span>javascript</span>
+                    <div class="slider-section">
+                        <div class="swiper main-swiper mainSwiper6">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/form_m/cswd.jpg" alt="Web Forms 1"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/form_m/InkedScreenshot 2021-08-27 192309_LI.jpg" alt="Web Forms 2">
+                                </div>
+                                <div class="swiper-slide"><img
+                                        src="images/form_m/InkedScreenshot 2021-08-27 192337_LI.jpg" alt="Web Forms 3">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next next6"></div>
+                            <div class="swiper-button-prev prev6"></div>
+                        </div>
+
+                        <div class="swiper thumbs-swiper thumbSwiper6">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/form_m/cswd.jpg" alt="T1"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/form_m/InkedScreenshot 2021-08-27 192309_LI.jpg" alt="T2"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/form_m/InkedScreenshot 2021-08-27 192337_LI.jpg" alt="T3"></div>
                             </div>
                         </div>
                     </div>
+
                     <div class="project-content">
-                        <h3>Doctor Booking portals</h3>
+                        <p class="project-brief">Custom engine for generating and processing complex data collection
+                            forms with automated validation.</p>
+                        <div class="project-tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">phpMyAdmin</span>
+                            <span class="tag">Data Processing</span>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Project 2: Trucks Entries System -->
                 <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/Screenshot 2021-08-27 161738.png" alt="Web Application">
-                        <div class="project-overlay">
-                            <h4>AI Emotion Recognition </h4>
-                            <div class="project-overlay-tags">
-                                <span>php</span>
-                                <span>phpmyadmin</span>
-                                <span>javascript</span>
-                                <span>bootstrap</span>
+                    <div class="project-header">
+                        <h3>Trucks Entries Management System</h3>
+                    </div>
+
+                    <div class="slider-section">
+                        <div class="swiper main-swiper mainSwiper2">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/trucks/Screenshot 2021-08-27 164041.png"
+                                        alt="Trucks 1"></div>
+                                <div class="swiper-slide"><img src="images/trucks/Screenshot 2021-08-27 192844.png"
+                                        alt="Trucks 2"></div>
+                                <div class="swiper-slide"><img src="images/trucks/Screenshot 2021-08-27 193019.png"
+                                        alt="Trucks 3"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/trucks/InkedScreenshot 2021-08-27 193043_LI.jpg" alt="Trucks 4">
+                                </div>
+                                <div class="swiper-slide"><img
+                                        src="images/trucks/InkedScreenshot 2021-08-27 193111_LI.jpg" alt="Trucks 5">
+                                </div>
+                            </div>
+                            <div class="swiper-button-next next2"></div>
+                            <div class="swiper-button-prev prev2"></div>
+                        </div>
+
+                        <div class="swiper thumbs-swiper thumbSwiper2">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/trucks/Screenshot 2021-08-27 164041.png"
+                                        alt="T1"></div>
+                                <div class="swiper-slide"><img src="images/trucks/Screenshot 2021-08-27 192844.png"
+                                        alt="T2"></div>
+                                <div class="swiper-slide"><img src="images/trucks/Screenshot 2021-08-27 193019.png"
+                                        alt="T3"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/trucks/InkedScreenshot 2021-08-27 193043_LI.jpg" alt="T4"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/trucks/InkedScreenshot 2021-08-27 193111_LI.jpg" alt="T5"></div>
                             </div>
                         </div>
                     </div>
+
                     <div class="project-content">
-                        <h3>Web Forms</h3>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/Screenshot 2026-01-11 113729.png" alt="Web Application">
-                        <div class="project-overlay">
-
-                            <h4>AI face Emotion Recognition </h4>
-                            <div class="project-overlay-tags">
-                                <span>Python</span>
-                                <span>OpenCV</span>
-                                <span>TensorFlow</span>
-                                <span>Keras</span>
-                                <span>Tkinter</span>
-                                <span>FER-2013 Dataset</span>
-                            </div>
-
+                        <p class="project-brief">An integrated port logistics solution for automated tracking of truck
+                            entries, schedule optimization, and throughput management.</p>
+                        <div class="project-tags">
+                            <span class="tag">PHP</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">Logistics</span>
                         </div>
                     </div>
+                </div>
+
+                <!-- Project 1: Blockchain Intellectual Property Management (Hybrid) -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Blockchain & AI Intellectual Property Management</h3>
+                    </div>
+
+                    <div class="slider-section">
+                        <div class="swiper main-swiper mainSwiper1">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/blockchain/Picture1.png" alt="Blockchain 1">
+                                </div>
+                                <div class="swiper-slide"><img src="images/blockchain/Picture2.png" alt="Blockchain 2">
+                                </div>
+                                <div class="swiper-slide"><img src="images/blockchain/photo_2025-10-17_13-52-37.jpg"
+                                        alt="Blockchain 3"></div>
+                                <div class="swiper-slide"><img src="images/blockchain/photo_2025-10-17_13-53-08.jpg"
+                                        alt="Blockchain 4"></div>
+                                <div class="swiper-slide"><img src="images/blockchain/photo_2025-10-17_13-53-10.jpg"
+                                        alt="Blockchain 5"></div>
+                            </div>
+                            <div class="swiper-button-next next1"></div>
+                            <div class="swiper-button-prev prev1"></div>
+                        </div>
+
+                        <div class="swiper thumbs-swiper thumbSwiper1">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img src="images/blockchain/Picture1.png" alt="T1"></div>
+                                <div class="swiper-slide"><img src="images/blockchain/Picture2.png" alt="T2"></div>
+                                <div class="swiper-slide"><img src="images/blockchain/photo_2025-10-17_13-52-37.jpg"
+                                        alt="T3"></div>
+                                <div class="swiper-slide"><img src="images/blockchain/photo_2025-10-17_13-53-08.jpg"
+                                        alt="T4"></div>
+                                <div class="swiper-slide"><img src="images/blockchain/photo_2025-10-17_13-53-10.jpg"
+                                        alt="T5"></div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="project-content">
-                        <h3>AI face Emotion Recognition</h3>
+                        <p class="project-brief">A sophisticated decentralized platform integrating **Artificial
+                            Intelligence** and **Machine Learning** with **Ethereum Blockchain** to secure, automate,
+                            and intelligently manage Intellectual Property rights and protection.</p>
+                        <div class="project-tags">
+                            <span class="tag">AI / ML</span>
+                            <span class="tag">Solidity</span>
+                            <span class="tag">Web3.js</span>
+                            <span class="tag">React</span>
+                            <span class="tag">Ethereum</span>
+                            <span class="tag">Intellectual Property</span>
+                        </div>
                     </div>
                 </div>
+
+                <!-- Project 7: AI Face Emotion Recognition -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Real-time AI Face Emotion Recognition</h3>
+                    </div>
+
+                    <div class="slider-section">
+                        <div class="swiper main-swiper mainSwiper7">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img
+                                        src="images/prediction__face_emotion/Screenshot 2026-01-11 113729.png"
+                                        alt="Face Emotion 1"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/prediction__face_emotion/Screenshot 2026-01-11 114556.png"
+                                        alt="Face Emotion 2"></div>
+                                <div class="swiper-slide"><img src="images/prediction__face_emotion/image (50).jpg"
+                                        alt="Face Emotion 3"></div>
+                            </div>
+                            <div class="swiper-button-next next7"></div>
+                            <div class="swiper-button-prev prev7"></div>
+                        </div>
+
+                        <div class="swiper thumbs-swiper thumbSwiper7">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img
+                                        src="images/prediction__face_emotion/Screenshot 2026-01-11 113729.png" alt="T1">
+                                </div>
+                                <div class="swiper-slide"><img
+                                        src="images/prediction__face_emotion/Screenshot 2026-01-11 114556.png" alt="T2">
+                                </div>
+                                <div class="swiper-slide"><img src="images/prediction__face_emotion/image (50).jpg"
+                                        alt="T3"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-content">
+                        <p class="project-brief">Deep Learning based facial expression analysis capable of identifying
+                            emotions in real-time using advanced neural networks.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">TensorFlow</span>
+                            <span class="tag">OpenCV</span>
+                            <span class="tag">Keras</span>
+                            <span class="tag">Neural Networks</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: AI Speech Emotion Recognition -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>AI Speech Emotion Recognition</h3>
+                    </div>
+
+                    <div class="slider-section">
+                        <div class="swiper main-swiper mainSwiper3">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img
+                                        src="images/speech_emotion_detection/Screenshot 2026-01-11 104509.png"
+                                        alt="Speech Emotion 1"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/speech_emotion_detection/Screenshot 2026-01-11 104526.png"
+                                        alt="Speech Emotion 2"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/speech_emotion_detection/Screenshot 2026-01-11 104858.png"
+                                        alt="Speech Emotion 3"></div>
+                                <div class="swiper-slide"><img
+                                        src="images/speech_emotion_detection/Screenshot 2026-01-11 104939.png"
+                                        alt="Speech Emotion 4"></div>
+                            </div>
+                            <div class="swiper-button-next next3"></div>
+                            <div class="swiper-button-prev prev3"></div>
+                        </div>
+
+                        <div class="swiper thumbs-swiper thumbSwiper3">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide"><img
+                                        src="images/speech_emotion_detection/Screenshot 2026-01-11 104509.png" alt="T1">
+                                </div>
+                                <div class="swiper-slide"><img
+                                        src="images/speech_emotion_detection/Screenshot 2026-01-11 104526.png" alt="T2">
+                                </div>
+                                <div class="swiper-slide"><img
+                                        src="images/speech_emotion_detection/Screenshot 2026-01-11 104858.png" alt="T3">
+                                </div>
+                                <div class="swiper-slide"><img
+                                        src="images/speech_emotion_detection/Screenshot 2026-01-11 104939.png" alt="T4">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-content">
+                        <p class="project-brief">Advanced audio analysis using LSTM networks to detect emotional nuances
+                            in spoken language, trained on the TESS dataset.</p>
+                        <div class="project-tags">
+                            <span class="tag">Python</span>
+                            <span class="tag">LSTM</span>
+                            <span class="tag">Deep Learning</span>
+                            <span class="tag">Audio Processing</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        function initProjectSlider(mainClass, thumbClass, nextBtn, prevBtn) {
+            const mainEl = document.querySelector(mainClass);
+            const thumbEl = document.querySelector(thumbClass);
+
+            if (!mainEl) return;
+
+            let thumbsSwiper = null;
+            if (thumbEl) {
+                thumbsSwiper = new Swiper(thumbClass, {
+                    spaceBetween: 10,
+                    slidesPerView: 4,
+                    freeMode: true,
+                    watchSlidesProgress: true,
+                });
+            }
+
+            new Swiper(mainClass, {
+                spaceBetween: 10,
+                effect: "fade",
+                fadeEffect: { crossFade: true },
+                navigation: {
+                    nextEl: nextBtn,
+                    prevEl: prevBtn,
+                },
+                thumbs: {
+                    swiper: thumbsSwiper,
+                },
+            });
+        }
+
+        // Initialize only when project has multiple images
+        initProjectSlider(".mainSwiper1", ".thumbSwiper1", ".next1", ".prev1");
+        initProjectSlider(".mainSwiper2", ".thumbSwiper2", ".next2", ".prev2");
+        initProjectSlider(".mainSwiper3", ".thumbSwiper3", ".next3", ".prev3");
+        initProjectSlider(".mainSwiper4", ".thumbSwiper4", ".next4", ".prev4");
+        initProjectSlider(".mainSwiper5", ".thumbSwiper5", ".next5", ".prev5");
+        initProjectSlider(".mainSwiper6", ".thumbSwiper6", ".next6", ".prev6");
+        initProjectSlider(".mainSwiper7", ".thumbSwiper7", ".next7", ".prev7");
+        initProjectSlider(".mainSwiper8", ".thumbSwiper8", ".next8", ".prev8");
+        initProjectSlider(".mainSwiper9", ".thumbSwiper9", ".next9", ".prev9");
+    </script>
 </body>
 
 </html>
